@@ -1,0 +1,116 @@
+{
+  "title": "ሕልም የወሰደኝ ጉዞ",
+  "language": "am",
+  "audience": "University students, especially those living away from home",
+  "intent": "Help students living away from home feel understood and see that leaving home does not mean forgetting it; growth, resilience, and new friendships can create a second sense of home.",
+  "target_duration_seconds": 85,
+  "aspect_ratios": [
+    "16:9",
+    "9:16"
+  ],
+  "style_block": "Cinematic, realistic Ethiopian university-life photography; natural light; emotionally restrained expressions; warm, grounded colors; authentic Ethiopian settings and people; no text or logos in generated images. Keep the protagonist's face, age, deep teal hijab, beige modest outfit, and backpack consistent in every shot.",
+  "character": {
+    "id": "protagonist",
+    "description": "A fictional 21-year-old Ethiopian Muslim university student with warm brown skin and dark brown eyes. She wears a deep teal hijab and a modest beige outfit. Her appearance, clothing, and age remain consistent throughout.",
+    "reference_image": null,
+    "reference_status": "Not generated; create and approve a character/style reference before production keyframes."
+  },
+  "shots": [
+    {
+      "id": "shot-01",
+      "duration_seconds": 10,
+      "narration_am": "አንዳንድ ሕልሞች ከቤታችን ያርቁናል። ነገር ግን ወደ ማንነታችን ይበልጥ ያቀርቡናል። እሷም እንደዚያ ነበር። ብዙ ሕልሞችንና ተስፋዎችን በልቧ ይዛ፣ ከቤተሰቧና ከለመደችው አካባቢ ተለይታ ወደ ዩኒቨርሲቲ ጉዞዋን ጀመረች።",
+      "subtitle_en": "",
+      "image_prompt": "A cinematic realistic scene inside a long-distance Ethiopian bus traveling through the Ethiopian countryside. The same fictional 21-year-old Ethiopian Muslim woman with warm brown skin and dark brown eyes wears her deep teal hijab and beige modest outfit, sitting beside the window with her suitcase nearby. She watches green mountains, rural villages, red-earth roads, and small houses pass by; her reflection is soft in the glass. Thoughtful and slightly emotional as she leaves home to pursue university dreams. Natural daylight, authentic Ethiopian environment, cinematic photography, wide 16:9 composition, no text or logos.",
+      "motion_prompt": "The bus moves steadily along the road; the countryside drifts past the window while the camera makes a gentle push toward her reflection. Keep her face and clothing stable.",
+      "reference_images": [],
+      "reason": "Open with the physical journey away from home and establish the central tension between ambition and belonging."
+    },
+    {
+      "id": "shot-02",
+      "duration_seconds": 10,
+      "narration_am": "በመጀመሪያ ሁሉም ነገር አስደሳች ነበር። አዲስ ቦታ፣ አዲስ ሰዎች፣ አዲስ ጓደኞችና አዲስ ሕይወት። ብዙ ነገሮችን ለማየት፣ ለመማርና ለመለወጥ ጓጉታ ነበር።",
+      "subtitle_en": "",
+      "image_prompt": "A wide cinematic establishing shot of an authentic Ethiopian public university campus. The same young Ethiopian Muslim woman in her deep teal hijab and beige modest outfit has just arrived, carrying a backpack and looking around with curiosity and excitement. Ethiopian students walk in small groups in everyday clothing; the campus has realistic university buildings, green trees, concrete paths, and books. Bright natural daylight, photorealistic, wide 16:9 composition, no text or logos.",
+      "motion_prompt": "Students walk naturally in the background as the camera makes a slow lateral move; the protagonist turns her gaze across the campus with quiet curiosity.",
+      "reference_images": [],
+      "reason": "Show the hopeful first impression of the new place before homesickness complicates the journey."
+    },
+    {
+      "id": "shot-03",
+      "duration_seconds": 9,
+      "narration_am": "ግን ከቤት መራቅ ማለት አዲስ ቦታ መድረስ ብቻ አይደለም። ከለመድነው ሕይወት መለየትንም ይጠይቃል።",
+      "subtitle_en": "",
+      "image_prompt": "A realistic cinematic scene inside a modest Ethiopian university dormitory. The same young Ethiopian Muslim woman in a deep teal hijab and beige modest outfit unpacks a suitcase beside a simple bed. A desk, a few books, folded clothes, and a backpack make the room feel lived-in; other female students settle in softly out of focus. She pauses and takes in the unfamiliar room, hopeful but slightly nervous. Natural window light, authentic student residence, cinematic composition, 16:9, no text or logos.",
+      "motion_prompt": "She places one folded item on the bed, pauses, and looks around the room; a gentle, nearly static camera move.",
+      "reference_images": [],
+      "reason": "Make the cost of leaving familiar routines visible through the quiet transition into dorm life."
+    },
+    {
+      "id": "shot-04",
+      "duration_seconds": 10,
+      "narration_am": "አንዳንድ ምሽቶች ብቸኝነት ይሰማታል። የቤቷን ምግብ፣ የእናቷን ድምፅ፣ የቤተሰቧን ሳቅና በየቀኑ የምታያቸውን ሰዎች ታስታውሳለች።",
+      "subtitle_en": "",
+      "image_prompt": "An emotionally restrained cinematic night scene in a modest Ethiopian university dormitory. The same young woman in her deep teal hijab sits on her bed holding a small, non-identifiable family photograph and looking at it thoughtfully. Unpacked suitcase, textbooks, and notebook on the desk; campus lights far outside the window. Her expression conveys loneliness and homesickness without crying. Warm bedside lamp against cool evening light, intimate realistic photography, 16:9, no readable text or logos.",
+      "motion_prompt": "She studies the photograph quietly, then lowers her eyes; the camera slowly pushes in while the campus lights stay soft in the distance.",
+      "reference_images": [],
+      "reason": "Give the audience a specific, intimate image for the loneliness and memories described in the narration."
+    },
+    {
+      "id": "shot-05",
+      "duration_seconds": 10,
+      "narration_am": "አንዳንድ ጊዜ ከቤተሰቧ ጋር በስልክ ስታወራ፣ «በአሁኑ ሰዓት ቤት ብሆን እንዴት ደስ ባለኝ!» ብላ ታስባለች። እናም በውስጧ ጥያቄ ይነሳል፤ «ለሕልሜ ስል የተወው ነገር ይህን ያህል ያስከፍላል?»",
+      "subtitle_en": "",
+      "image_prompt": "A quiet evening scene in the same Ethiopian university dorm room. The same fictional student in her deep teal hijab and beige outfit sits by the window speaking to family on her phone; show no other person's face and no readable phone screen. She listens with affection and longing, with a small pause after the call. Warm lamp light and cool campus night outside, natural understated emotion, cinematic close medium shot, 16:9, no text or logos.",
+      "motion_prompt": "She listens on the phone, gives a small restrained smile, then looks through the window after the call; slow camera move, no exaggerated acting.",
+      "reference_images": [],
+      "reason": "Make the inner question in the script concrete while protecting the privacy and likeness of family members."
+    },
+    {
+      "id": "shot-06",
+      "duration_seconds": 10,
+      "narration_am": "ነገር ግን ቀናት እያለፉ ሲሄዱ ነገሮች መለወጥ ጀመሩ። በየቀኑ አዳዲስ ነገሮችን ትማራለች። ችግሮችን መቋቋም፣ ራሷን መቻል፣ ውሳኔ መወሰንና ከስህተቶቿ መማር ጀመረች።",
+      "subtitle_en": "",
+      "image_prompt": "A cinematic realistic scene in an Ethiopian university library. The same student, wearing her deep teal hijab and beige modest outfit, studies at a desk with textbooks, notebooks, and a laptop, taking notes with focus and determination. Other Ethiopian students study independently in the background in varied everyday clothing. Authentic academic environment, natural light, realistic details, wide 16:9 composition, no text or logos.",
+      "motion_prompt": "She reads, writes a note, pauses to think, then continues with renewed focus; gentle camera push-in, stable face and clothing.",
+      "reference_images": [],
+      "reason": "Show growth as repeated everyday effort rather than a sudden transformation."
+    },
+    {
+      "id": "shot-07",
+      "duration_seconds": 10,
+      "narration_am": "በመንገዷም ከእንግዶች መካከል ጓደኞችን አገኘች። አብረው የሚማሩ፣ የሚስቁ፣ የሚቸገሩና እርስ በርስ የሚደጋገፉ ሰዎችን። ቀስ በቀስ ያ እንግዳ የነበረው ቦታ የለመደችው ቦታ መሆን ጀመረ።",
+      "subtitle_en": "",
+      "image_prompt": "A warm, joyful cinematic afternoon on an Ethiopian university campus. The same young woman in a deep teal hijab and beige modest outfit sits with a small group of fictional Ethiopian female university friends in varied everyday clothing. They share books, talk, laugh, and support one another; they are not all wearing hijabs. Green trees, campus buildings, and students in the background. Natural, believable expressions, photorealistic, 16:9, no text or logos.",
+      "motion_prompt": "The friends share a book and laugh gently; the protagonist joins in, becoming more at ease. Slow, steady camera movement and natural gestures.",
+      "reference_images": [],
+      "reason": "Show the first visible sign that unfamiliar people and places are becoming a community."
+    },
+    {
+      "id": "shot-08",
+      "duration_seconds": 16,
+      "narration_am": "አሁን ያቺ ከቤት ርቃ የመጣችው ልጅ ከመጀመሪያዋ የተለየች ነች። በችግሮች ውስጥ ጥንካሬዋን፣ በብቸኝነት ውስጥ ራሷን መቻሏን፣ በአዳዲስ ሰዎች መካከልም አዲስ ቤተሰብ ማግኘት እንደምትችል ተረዳች። እናም አንድ ነገር ተማረች፤ ከቤት መራቅ ቤትን መርሳት አይደለም። አንዳንድ ጊዜ የራሳችንን አቅምና ማንነት ለማወቅ የምንጀምረው ከለመድነው ዓለም ስንወጣ ነው። ምክንያቱም ቤት ማለት የተወለድንበት ቦታ ብቻ አይደለም። የምንወዳቸው ሰዎች፣ የምንገነባቸው ትዝታዎችና ራሳችንን የምናገኝበት ቦታም ነው።",
+      "subtitle_en": "",
+      "image_prompt": "A hopeful cinematic final scene on an Ethiopian university campus at golden hour. The same fictional 21-year-old Ethiopian Muslim woman in her deep teal hijab and beige modest outfit walks confidently with her familiar backpack and books. Her expression is peaceful and hopeful; students and green trees appear naturally in the background. Frame her with clear space around her for later reframing to vertical and horizontal formats. Photorealistic, warm sunset light, cinematic wide 16:9 composition, no text or logos.",
+      "motion_prompt": "She walks forward at an unhurried pace as the camera gently tracks with her; end on a calm, hopeful hold suitable for a separate AI-made end card.",
+      "reference_images": [],
+      "reason": "Resolve the story with her growth and the idea that belonging can expand without erasing where she came from."
+    }
+  ],
+  "music_cues": [
+    {
+      "id": "cue-main",
+      "start_shot": "shot-01",
+      "end_shot": "shot-08",
+      "description": "Original instrumental score; intimate and reflective at the beginning, gently warmer as friendships form, hopeful but restrained at the end. Keep the arrangement sparse and leave room for Amharic narration; duck music under speech.",
+      "status": "Not generated"
+    }
+  ],
+  "production_notes": [
+    "This is a planning draft. Shot durations are estimates and must be adjusted to the measured narration and a 60–90 second final runtime.",
+    "English subtitles are intentionally blank until a translation is reviewed by the filmmaker or a fluent Amharic speaker.",
+    "Create and approve a character/style reference image before generating production keyframes; the current smoke-test image is not the character reference.",
+    "The image prompts are drafted for 16:9. Preserve subject-safe composition so assembly can reframe them to 9:16.",
+    "No model calls are authorized by this draft."
+  ]
+}
