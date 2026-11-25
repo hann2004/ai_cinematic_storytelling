@@ -16,12 +16,12 @@ STORYBOARD_PATH = REPO_ROOT / "storyboard.json"
 SCHEMA_PATH = REPO_ROOT / "schema" / "storyboard.schema.json"
 DEFAULT_OUTPUT_PATH = REPO_ROOT / "outputs" / "narration_am.wav"
 MODEL = "gemini-3.8-flash-tts"
-VOICE = "Kore"
+VOICE = "Leda"
 STYLE = (
-    "Speak fluent Amharic naturally, clearly, warmly, and unhurriedly, "
-    "like a sincere personal story. Use natural Amharic pronunciation, "
-    "rhythm, and pauses. Read the supplied text exactly as written; "
-    "do not translate, paraphrase, or add words."
+    "A youthful young-adult woman speaking fluent Amharic in a natural, "
+    "conversational, warm, sincere way. Use clear Amharic pronunciation "
+    "and natural rhythm, with a gentle unhurried pace. Read the supplied "
+    "text exactly as written; do not translate, paraphrase, or add words."
 )
 
 
