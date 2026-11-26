@@ -45,7 +45,8 @@ def load_prompts() -> tuple[str, str]:
         "These clothing details are required. Show one coherent photorealistic "
         "full-body character reference, one person standing naturally head-to-toe, "
         "centered and occupying most of the image height, on a neutral simple "
-        "background. "
+        "background. She is bare-faced with no makeup or cosmetics; retain natural "
+        "skin texture and understated facial features. "
         f"{character} "
         "Use the supplied image only for broad visual guidance; depict a different "
         "fictional individual, not the same person's face or identity. Bright "
@@ -58,7 +59,8 @@ def load_prompts() -> tuple[str, str]:
         "render, CGI, illustration, anime, plastic skin, underexposed face, blurry "
         "face, deformed hands, extra fingers, bareheaded, uncovered head, uncovered "
         "hair, visible hair, no hijab, missing headscarf, colorful headscarf, text, "
-        "logo, backpack"
+        "logo, backpack, makeup, cosmetics, eyeliner, eyeshadow, lipstick, "
+        "foundation, blush, false eyelashes"
     )
     return prompt, negative_prompt
 
