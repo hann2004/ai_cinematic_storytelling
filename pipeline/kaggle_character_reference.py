@@ -83,6 +83,9 @@ def generate_image(
         subfolder="sdxl_models",
         weight_name=ADAPTER_FILE,
     )
+    if pipe.image_encoder is None:
+        raise RuntimeError("IP-Adapter did not load its required image encoder.")
+    pipe.image_encoder.to(dtype=pipe.unet.dtype)
     pipe.set_ip_adapter_scale(adapter_scale)
     pipe.enable_vae_slicing()
     pipe.enable_model_cpu_offload()
