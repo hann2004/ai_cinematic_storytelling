@@ -34,12 +34,13 @@ ADAPTER_SCALE = 0.25
 NEGATIVE_PROMPT = (
     "collage, diptych, split screen, cloned identity, repeated identical face, "
     "giant face, face inset, cropped head, deformed face, deformed hands, extra fingers, "
-    "blurry face, 3D render, CGI, illustration, anime, text, logo, watermark"
+    "blurry face, photorealistic, live-action photography, text, logo, watermark"
 )
 SHOT_NEGATIVE_PROMPTS = {
     "shot-01": (
         "portrait, headshot, close-up, close-up face, solo woman, isolated subject, "
-        "empty background, cropped body, giant face"
+        "empty background, cropped body, giant face, rural village, countryside, "
+        "mud hut, thatched hut, shanty, visibly impoverished home, luxury mansion"
     )
 }
 
@@ -70,13 +71,19 @@ def load_shot(shot_id: str) -> tuple[dict[str, Any], dict[str, Any]]:
         shot_composition = (
             "WIDE 16:9 ESTABLISHING SHOT, not a portrait: show the protagonist and "
             "her family together as a group, full figures visible at an "
-            "Ethiopian city-home gate. The people and gate should fill the frame; "
-            "the protagonist is one person in the group, not a giant face. Her "
-            "suitcase and black tote must be plainly visible beside her. "
+            "ordinary, well-kept middle-income Ethiopian city-home gate. Show a "
+            "paved urban street, modest plaster-and-concrete residence, simple "
+            "metal gate, and tidy lived-in yard. The people and gate should fill "
+            "the frame; the protagonist is the clear main character in the group, "
+            "not a giant face. Her black hijab, black abaya, suitcase, and laptop "
+            "tote must be plainly visible. "
         )
         negative_prompt = f"{negative_prompt}, {SHOT_NEGATIVE_PROMPTS[shot_id]}"
 
     prompt = (
+        "Render this as a polished cinematic 3D animated short film, with stylized "
+        "3D characters and environments, expressive natural faces, and warm "
+        "cinematic lighting. This is animation, not live-action or photorealism. "
         f"{shot_composition}"
         f"{shot['image_prompt']} "
         f"{storyboard['character']['description']} "
@@ -85,7 +92,7 @@ def load_shot(shot_id: str) -> tuple[dict[str, Any], dict[str, Any]]:
         "visually consistent, while preserving the described scene, framing, "
         "clothing, expression, and setting. Make the scene composition more "
         "important than matching the reference photo's original crop. One coherent "
-        "photorealistic frame; no text or logos."
+        "cohesive 3D animated frame; no text or logos."
     )
     return (
         {

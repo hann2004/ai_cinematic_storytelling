@@ -43,11 +43,15 @@ the current public repository `hann2004/ai_cinematic_storytelling`.
 
 ## First storyboard keyframe (Kaggle)
 
-The approved character reference and the first shot's prompt are now recorded
-in `storyboard.json`. Use
+The first SDXL/IP-Adapter keyframe was rejected because it omitted the intended
+home-gate composition. The current visual direction is polished stylized 3D
+animation; it is a new, untested approach. The approved realistic character
+reference should guide the fictional character's broad design, not dictate the
+frame crop or final rendering style. The shot prompt and visual direction are
+recorded in `storyboard.json`. Use
 [`notebooks/keyframes.ipynb`](notebooks/keyframes.ipynb) to generate only
-`shot-01` with the approved reference image and SDXL + IP-Adapter. The tracked
-implementation is [`pipeline/kaggle_keyframes.py`](pipeline/kaggle_keyframes.py).
+`shot-01` in Kaggle with SDXL + IP-Adapter. The tracked implementation is
+[`pipeline/kaggle_keyframes.py`](pipeline/kaggle_keyframes.py).
 
 1. Commit and push the latest storyboard, schema, pipeline, and notebook files.
 2. Import the latest notebook into Kaggle, enable Internet and a GPU, and grant
@@ -60,5 +64,6 @@ implementation is [`pipeline/kaggle_keyframes.py`](pipeline/kaggle_keyframes.py)
    project only if approved.
 
 The selected narration remains unchanged. The bus departure is a silent shot,
-and the nine storyboard holds total 90 seconds. No keyframe has been generated
-by this code change.
+and the nine storyboard holds total 90 seconds. No 3D-style keyframe has been
+generated or approved yet. Review the rendered direction after one attempt
+before deciding whether to continue.
