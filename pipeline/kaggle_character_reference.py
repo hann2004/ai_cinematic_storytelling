@@ -71,6 +71,8 @@ def generate_image(
     negative_prompt: str,
     hf_token: str,
     seed: int,
+    width: int = WIDTH,
+    height: int = HEIGHT,
 ) -> Image.Image:
     pipe = AutoPipelineForText2Image.from_pretrained(
         MODEL_ID,
@@ -92,8 +94,8 @@ def generate_image(
         prompt=prompt,
         negative_prompt=negative_prompt,
         ip_adapter_image=reference_image,
-        width=WIDTH,
-        height=HEIGHT,
+        width=width,
+        height=height,
         num_inference_steps=INFERENCE_STEPS,
         guidance_scale=GUIDANCE_SCALE,
         generator=torch.Generator(device="cpu").manual_seed(seed),

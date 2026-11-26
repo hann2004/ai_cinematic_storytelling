@@ -40,3 +40,25 @@ into an independent Kaggle script.
 
 Kaggle GPU availability and free usage limits can change. This workflow uses
 the current public repository `hann2004/ai_cinematic_storytelling`.
+
+## First storyboard keyframe (Kaggle)
+
+The approved character reference and the first shot's prompt are now recorded
+in `storyboard.json`. Use
+[`notebooks/keyframes.ipynb`](notebooks/keyframes.ipynb) to generate only
+`shot-01` with the approved reference image and SDXL + IP-Adapter. The tracked
+implementation is [`pipeline/kaggle_keyframes.py`](pipeline/kaggle_keyframes.py).
+
+1. Commit and push the latest storyboard, schema, pipeline, and notebook files.
+2. Import the latest notebook into Kaggle, enable Internet and a GPU, and grant
+   it access to the `HF_TOKEN` Kaggle Secret.
+3. Review the shot prompt in the notebook's source repository, then run its
+   cells in order. The final launch cell makes one generation request for
+   `shot-01`; rerunning it creates a separate output folder.
+4. Review the image before approving it. The download ZIP contains the PNG,
+   metadata JSON, and one-line JSONL model-call record. Add those to the
+   project only if approved.
+
+The selected narration remains unchanged. The bus departure is a silent shot,
+and the nine storyboard holds total 90 seconds. No keyframe has been generated
+by this code change.

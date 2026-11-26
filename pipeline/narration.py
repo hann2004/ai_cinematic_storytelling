@@ -34,6 +34,7 @@ def load_narration() -> tuple[list[dict[str, str]], str, str]:
     shot_lines = [
         {"id": shot["id"], "text": shot["narration_am"]}
         for shot in storyboard["shots"]
+        if shot["narration_am"].strip()
     ]
     narration = "\n\n".join(line["text"] for line in shot_lines)
     if not narration.strip():
