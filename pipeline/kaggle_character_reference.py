@@ -2,7 +2,6 @@ import argparse
 import hashlib
 import importlib.metadata
 import json
-import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -22,7 +21,7 @@ from pipeline.logger import RUNS_FILE, timed_call
 
 STORYBOARD_PATH = REPO_ROOT / "storyboard.json"
 SCHEMA_PATH = REPO_ROOT / "schema" / "storyboard.schema.json"
-MODEL_ID = "stabilityai/stable-diffusion-xl-base-1.0"
+MODEL_ID = "SG161222/RealVisXL_V4.0"
 ADAPTER_REPO = "h94/IP-Adapter"
 ADAPTER_FILE = "ip-adapter_sdxl.bin"
 ADAPTER_SCALE = 0.45
@@ -69,7 +68,6 @@ def generate_image(
     reference_image: Image.Image,
     prompt: str,
     negative_prompt: str,
-    hf_token: str,
     seed: int,
     width: int = WIDTH,
     height: int = HEIGHT,
@@ -79,13 +77,11 @@ def generate_image(
         MODEL_ID,
         torch_dtype=torch.float16,
         use_safetensors=True,
-        token=hf_token,
     )
     pipe.load_ip_adapter(
         ADAPTER_REPO,
         subfolder="sdxl_models",
         weight_name=ADAPTER_FILE,
-        token=hf_token,
     )
     pipe.set_ip_adapter_scale(adapter_scale)
     pipe.enable_vae_slicing()
@@ -146,10 +142,6 @@ def main() -> int:
             + ", ".join(str(path) for path in existing)
         )
 
-    hf_token = os.environ.get("HF_TOKEN")
-    if not hf_token:
-        parser.error("Set HF_TOKEN from Kaggle Secrets before running this script.")
-
     try:
         reference_image = Image.open(arguments.reference_image).convert("RGB")
         prompt, negative_prompt = load_prompts()
@@ -177,7 +169,6 @@ def main() -> int:
             reference_image,
             prompt,
             negative_prompt,
-            hf_token,
             arguments.seed,
             note="Kaggle GPU time; monetary cost not estimated.",
         )

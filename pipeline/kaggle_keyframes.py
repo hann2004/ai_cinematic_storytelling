@@ -1,7 +1,6 @@
 import argparse
 import hashlib
 import json
-import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -34,7 +33,7 @@ ADAPTER_SCALE = 0.25
 NEGATIVE_PROMPT = (
     "collage, diptych, split screen, cloned identity, repeated identical face, "
     "giant face, face inset, cropped head, deformed face, deformed hands, extra fingers, "
-    "blurry face, photorealistic, live-action photography, text, logo, watermark"
+    "blurry face, 3D render, CGI, illustration, anime, text, logo, watermark"
 )
 SHOT_NEGATIVE_PROMPTS = {
     "shot-01": (
@@ -81,9 +80,8 @@ def load_shot(shot_id: str) -> tuple[dict[str, Any], dict[str, Any]]:
         negative_prompt = f"{negative_prompt}, {SHOT_NEGATIVE_PROMPTS[shot_id]}"
 
     prompt = (
-        "Render this as a polished cinematic 3D animated short film, with stylized "
-        "3D characters and environments, expressive natural faces, and warm "
-        "cinematic lighting. This is animation, not live-action or photorealism. "
+        "Create a cinematic photorealistic live-action film still with natural "
+        "human features, realistic textures, and believable lighting. "
         f"{shot_composition}"
         f"{shot['image_prompt']} "
         f"{storyboard['character']['description']} "
@@ -92,7 +90,7 @@ def load_shot(shot_id: str) -> tuple[dict[str, Any], dict[str, Any]]:
         "visually consistent, while preserving the described scene, framing, "
         "clothing, expression, and setting. Make the scene composition more "
         "important than matching the reference photo's original crop. One coherent "
-        "cohesive 3D animated frame; no text or logos."
+        "photorealistic frame; no text or logos."
     )
     return (
         {
@@ -116,9 +114,6 @@ def main() -> int:
 
     if not torch.cuda.is_available():
         parser.error("A CUDA GPU is required; select a Kaggle GPU accelerator.")
-    hf_token = os.environ.get("HF_TOKEN")
-    if not hf_token:
-        parser.error("Set HF_TOKEN from Kaggle Secrets before running this script.")
 
     try:
         shot_data, _ = load_shot(arguments.shot_id)
@@ -171,7 +166,6 @@ def main() -> int:
             reference_image,
             shot_data["prompt"],
             shot_data["negative_prompt"],
-            hf_token,
             arguments.seed,
             width=WIDTH,
             height=HEIGHT,
