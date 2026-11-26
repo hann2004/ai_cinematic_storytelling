@@ -40,9 +40,12 @@ def load_prompts() -> tuple[str, str]:
 
     character = storyboard["character"]["description"]
     prompt = (
-        "One coherent photorealistic full-body character reference, one fictional "
-        "person, standing naturally and visible head-to-toe, centered and occupying "
-        "most of the image height, neutral simple background. "
+        "The fictional woman is visibly wearing a plain black hijab that fully "
+        "covers her hair and neck, with her face visible, and a simple black abaya. "
+        "These clothing details are required. Show one coherent photorealistic "
+        "full-body character reference, one person standing naturally head-to-toe, "
+        "centered and occupying most of the image height, on a neutral simple "
+        "background. "
         f"{character} "
         "Use the supplied image only for broad visual guidance; depict a different "
         "fictional individual, not the same person's face or identity. Bright "
@@ -53,7 +56,9 @@ def load_prompts() -> tuple[str, str]:
         "collage, diptych, split screen, duplicate person, extra person, tiny "
         "duplicate, giant face, face inset, close-up portrait, cropped body, 3D "
         "render, CGI, illustration, anime, plastic skin, underexposed face, blurry "
-        "face, deformed hands, extra fingers, text, logo, backpack"
+        "face, deformed hands, extra fingers, bareheaded, uncovered head, uncovered "
+        "hair, visible hair, no hijab, missing headscarf, colorful headscarf, text, "
+        "logo, backpack"
     )
     return prompt, negative_prompt
 

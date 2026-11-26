@@ -9,4 +9,4 @@
 ## Character reference
 
 - **Cloudflare FLUX text-only reference:** The generated image did not match the filmmaker's visual reference and was rejected. Cloudflare also rejected a later request with HTTP 400 because the prompt exceeded its 2,048-character limit. The problem was not solved by adding more prompt wording: this request path could not accept the reference photo at all.
-- **Recovery:** Retired `pipeline.keyframes` for this task and added `notebooks/character_reference.ipynb` to the repository. It uses Diffusers IP-Adapter in Kaggle to accept a private reference image. The notebook has not yet been run; no new model output is claimed.
+- **Recovery:** Retired `pipeline.keyframes` for this task and added `notebooks/character_reference.ipynb` to the repository. It uses Diffusers IP-Adapter in Kaggle with a private reference image. The first Kaggle output did not wear the requested hijab despite the storyboard description; the prompt now emphasizes the required black hijab and abaya and excludes uncovered hair in the negative prompt. This adjustment is untested; review the next result before using it.
