@@ -47,11 +47,14 @@ the current public repository `hann2004/ai_cinematic_storytelling`.
 The earlier SDXL/IP-Adapter keyframe did not match the intended home-gate
 composition. The user chose to return to a realistic live-action look and try
 the public [RealVisXL SDXL checkpoint](https://huggingface.co/SG161222/RealVisXL_V4.0)
-with the existing approved character reference. This model has not yet been
-tested in this workflow; it may still produce artifacts or fail to follow the
-composition. Both model repositories are public and ungated, so no Hugging Face
-token is required. The shot prompt and visual direction are recorded in
-`storyboard.json`. Use
+with the existing approved character reference. The first RealVisXL result did
+not follow the requested character and setting, so the revised shot prompt has
+not yet been tested and may still fail. Both model repositories are public and
+ungated, so no Hugging Face token is required. The generator now uses each
+shot's scene prompt once instead of repeating the full character and style
+descriptions. Shot 1 explicitly names the protagonist and her two adult
+parents, their clothing, and the urban home setting. The shot prompt and visual
+direction are recorded in `storyboard.json`. Use
 [`notebooks/keyframes.ipynb`](notebooks/keyframes.ipynb) to generate only
 `shot-01` in Kaggle with RealVisXL + IP-Adapter. The tracked implementation is
 [`pipeline/kaggle_keyframes.py`](pipeline/kaggle_keyframes.py).

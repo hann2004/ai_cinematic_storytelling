@@ -30,7 +30,7 @@ STORYBOARD_PATH = REPO_ROOT / "storyboard.json"
 SCHEMA_PATH = REPO_ROOT / "schema" / "storyboard.schema.json"
 WIDTH = 1024
 HEIGHT = 576
-ADAPTER_SCALE = 0.25
+ADAPTER_SCALE = 0.4
 NEGATIVE_PROMPT = (
     "collage, diptych, split screen, cloned identity, repeated identical face, "
     "giant face, face inset, cropped head, deformed face, deformed hands, extra fingers, "
@@ -40,7 +40,9 @@ SHOT_NEGATIVE_PROMPTS = {
     "shot-01": (
         "portrait, headshot, close-up, close-up face, solo woman, isolated subject, "
         "empty background, cropped body, giant face, rural village, countryside, "
-        "mud hut, thatched hut, shanty, visibly impoverished home, luxury mansion"
+        "mud hut, thatched hut, shanty, visibly impoverished home, luxury mansion, "
+        "children, toddlers, babies, schoolchildren, uncovered hair, bareheaded, "
+        "missing hijab, white t-shirt"
     )
 }
 
@@ -65,33 +67,17 @@ def load_shot(shot_id: str) -> tuple[dict[str, Any], dict[str, Any]]:
             raise FileNotFoundError(f"Reference image not found: {relative_path}")
         reference_paths.append(path)
 
-    shot_composition = ""
     negative_prompt = NEGATIVE_PROMPT
     if shot_id == "shot-01":
-        shot_composition = (
-            "WIDE 16:9 ESTABLISHING SHOT, not a portrait: show the protagonist and "
-            "her family together as a group, full figures visible at an "
-            "ordinary, well-kept middle-income Ethiopian city-home gate. Show a "
-            "paved urban street, modest plaster-and-concrete residence, simple "
-            "metal gate, and tidy lived-in yard. The people and gate should fill "
-            "the frame; the protagonist is the clear main character in the group, "
-            "not a giant face. Her black hijab, black abaya, suitcase, and laptop "
-            "tote must be plainly visible. "
-        )
         negative_prompt = f"{negative_prompt}, {SHOT_NEGATIVE_PROMPTS[shot_id]}"
 
     prompt = (
-        "Create a cinematic photorealistic live-action film still with natural "
-        "human features, realistic textures, and believable lighting. "
-        f"{shot_composition}"
+        "Photorealistic cinematic film still. Follow this shot description "
+        "closely; prioritize the specified people, clothing, props, and setting. "
         f"{shot['image_prompt']} "
-        f"{storyboard['character']['description']} "
-        f"{storyboard['style_block']} "
-        "Use the supplied approved character reference to keep the protagonist "
-        "visually consistent, while preserving the described scene, framing, "
-        "clothing, expression, and setting. Make the scene composition more "
-        "important than matching the reference photo's original crop. One coherent "
-        "photorealistic frame; no text or logos."
+        "Use the supplied approved character reference for the protagonist's "
+        "face and black hijab. Keep the requested wide composition rather than "
+        "copying the portrait crop. No text or logos."
     )
     return (
         {
