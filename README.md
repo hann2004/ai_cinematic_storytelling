@@ -38,6 +38,5 @@ into an independent Kaggle script.
    Kaggle secrets. Check current model licences and usage terms before public
    release.
 
-Kaggle GPU availability and free usage limits can change. The assignment
-requires the public repository `hann2004/heritage-short`; rename this
-workspace's existing GitHub repository before pushing the notebook and script.
+Kaggle GPU availability and free usage limits can change. This workflow uses
+the current public repository `hann2004/ai_cinematic_storytelling`.
