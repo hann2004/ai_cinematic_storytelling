@@ -13,9 +13,13 @@ import torch
 from PIL import Image
 from diffusers import AutoPipelineForText2Image
 
+REPO_ROOT = Path(__file__).resolve().parents[1]
+# Direct script execution places pipeline/ rather than the repository root on sys.path.
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
 from pipeline.logger import RUNS_FILE, timed_call
 
-REPO_ROOT = Path(__file__).resolve().parents[1]
 STORYBOARD_PATH = REPO_ROOT / "storyboard.json"
 SCHEMA_PATH = REPO_ROOT / "schema" / "storyboard.schema.json"
 MODEL_ID = "stabilityai/stable-diffusion-xl-base-1.0"
