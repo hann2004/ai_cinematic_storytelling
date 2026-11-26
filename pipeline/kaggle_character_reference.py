@@ -73,6 +73,7 @@ def generate_image(
     seed: int,
     width: int = WIDTH,
     height: int = HEIGHT,
+    adapter_scale: float = ADAPTER_SCALE,
 ) -> Image.Image:
     pipe = AutoPipelineForText2Image.from_pretrained(
         MODEL_ID,
@@ -86,7 +87,7 @@ def generate_image(
         weight_name=ADAPTER_FILE,
         token=hf_token,
     )
-    pipe.set_ip_adapter_scale(ADAPTER_SCALE)
+    pipe.set_ip_adapter_scale(adapter_scale)
     pipe.enable_vae_slicing()
     pipe.enable_model_cpu_offload()
 

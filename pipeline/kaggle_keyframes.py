@@ -30,12 +30,18 @@ STORYBOARD_PATH = REPO_ROOT / "storyboard.json"
 SCHEMA_PATH = REPO_ROOT / "schema" / "storyboard.schema.json"
 WIDTH = 1024
 HEIGHT = 576
-ADAPTER_SCALE = 0.45
+ADAPTER_SCALE = 0.25
 NEGATIVE_PROMPT = (
-    "collage, diptych, split screen, duplicate person, extra person, giant face, "
-    "face inset, cropped head, deformed face, deformed hands, extra fingers, "
+    "collage, diptych, split screen, cloned identity, repeated identical face, "
+    "giant face, face inset, cropped head, deformed face, deformed hands, extra fingers, "
     "blurry face, 3D render, CGI, illustration, anime, text, logo, watermark"
 )
+SHOT_NEGATIVE_PROMPTS = {
+    "shot-01": (
+        "portrait, headshot, close-up, close-up face, solo woman, isolated subject, "
+        "empty background, cropped body, giant face"
+    )
+}
 
 
 def load_shot(shot_id: str) -> tuple[dict[str, Any], dict[str, Any]]:
@@ -58,20 +64,34 @@ def load_shot(shot_id: str) -> tuple[dict[str, Any], dict[str, Any]]:
             raise FileNotFoundError(f"Reference image not found: {relative_path}")
         reference_paths.append(path)
 
+    shot_composition = ""
+    negative_prompt = NEGATIVE_PROMPT
+    if shot_id == "shot-01":
+        shot_composition = (
+            "WIDE 16:9 ESTABLISHING SHOT, not a portrait: show the protagonist and "
+            "her family together as a group, full figures visible at an "
+            "Ethiopian city-home gate. The people and gate should fill the frame; "
+            "the protagonist is one person in the group, not a giant face. Her "
+            "suitcase and black tote must be plainly visible beside her. "
+        )
+        negative_prompt = f"{negative_prompt}, {SHOT_NEGATIVE_PROMPTS[shot_id]}"
+
     prompt = (
-        f"{storyboard['style_block']} "
-        f"{storyboard['character']['description']} "
+        f"{shot_composition}"
         f"{shot['image_prompt']} "
+        f"{storyboard['character']['description']} "
+        f"{storyboard['style_block']} "
         "Use the supplied approved character reference to keep the protagonist "
         "visually consistent, while preserving the described scene, framing, "
-        "clothing, expression, and setting. One coherent photorealistic frame; "
-        "no text or logos."
+        "clothing, expression, and setting. Make the scene composition more "
+        "important than matching the reference photo's original crop. One coherent "
+        "photorealistic frame; no text or logos."
     )
     return (
         {
             "shot": shot,
             "prompt": prompt,
-            "negative_prompt": NEGATIVE_PROMPT,
+            "negative_prompt": negative_prompt,
             "reference_paths": reference_paths,
         },
         storyboard,
@@ -148,6 +168,7 @@ def main() -> int:
             arguments.seed,
             width=WIDTH,
             height=HEIGHT,
+            adapter_scale=ADAPTER_SCALE,
             note="Kaggle GPU time; monetary cost not estimated.",
         )
 
