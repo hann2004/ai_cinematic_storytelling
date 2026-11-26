@@ -67,3 +67,19 @@ shot prompt is recorded in `storyboard.json`. Use
 The selected narration remains unchanged. The bus departure is a silent shot,
 and the nine storyboard holds total 90 seconds. Review the Gemini result before
 deciding whether to continue.
+
+## Assemble the finished film
+
+To create the finished film from the nine images and the approved narration,
+follow the [video assembly guide](docs/video-assembly.md). It covers
+prerequisites, input naming, narration-to-shot alignment, score generation,
+rendering, verification, troubleshooting, and what to record in a production
+report.
+
+```bash
+python3 -m pipeline.assemble
+```
+
+If the output MP4 already exists, add `--force` to replace it. The bundled
+TimGM6mb SoundFont is GPL-2; check its terms before publishing or
+redistributing a score made with it.
