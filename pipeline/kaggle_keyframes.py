@@ -2,6 +2,7 @@ import argparse
 import hashlib
 import json
 import sys
+import traceback
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -202,6 +203,7 @@ def main() -> int:
         ValueError,
     ) as error:
         print(f"Keyframe generation failed: {error}", file=sys.stderr)
+        traceback.print_exc()
         return 1
 
     print(f"Saved keyframe: {image_path}")

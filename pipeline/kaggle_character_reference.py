@@ -3,6 +3,7 @@ import hashlib
 import importlib.metadata
 import json
 import sys
+import traceback
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -85,7 +86,7 @@ def generate_image(
     )
     if pipe.image_encoder is None:
         raise RuntimeError("IP-Adapter did not load its required image encoder.")
-    pipe.image_encoder.to(dtype=pipe.unet.dtype)
+    pipe.to(dtype=pipe.unet.dtype)
     pipe.set_ip_adapter_scale(adapter_scale)
     pipe.enable_vae_slicing()
     pipe.enable_model_cpu_offload()
@@ -203,6 +204,7 @@ def main() -> int:
         ValueError,
     ) as error:
         print(f"Character reference generation failed: {error}", file=sys.stderr)
+        traceback.print_exc()
         return 1
 
     print(f"Saved image: {image_path}")
