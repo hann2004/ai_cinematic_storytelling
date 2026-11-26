@@ -1,6 +1,10 @@
 import argparse
+import base64
 import hashlib
+import importlib.metadata
+import io
 import json
+import os
 import sys
 import traceback
 from datetime import datetime, timezone
@@ -8,29 +12,18 @@ from pathlib import Path
 from typing import Any
 
 import jsonschema
-import torch
+from google import genai
 from PIL import Image
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from pipeline.kaggle_character_reference import (  # noqa: E402
-    ADAPTER_REPO,
-    DEFAULT_SEED,
-    GUIDANCE_SCALE,
-    INFERENCE_STEPS,
-    MODEL_ID,
-    package_versions,
-    generate_image,
-)
 from pipeline.logger import RUNS_FILE, timed_call  # noqa: E402
 
 STORYBOARD_PATH = REPO_ROOT / "storyboard.json"
 SCHEMA_PATH = REPO_ROOT / "schema" / "storyboard.schema.json"
-WIDTH = 1024
-HEIGHT = 576
-ADAPTER_SCALE = 0.4
+MODEL_ID = "gemini-nano-banana-2.1"
 NEGATIVE_PROMPT = (
     "collage, diptych, split screen, cloned identity, repeated identical face, "
     "giant face, face inset, cropped head, deformed face, deformed hands, extra fingers, "
@@ -46,6 +39,41 @@ SHOT_NEGATIVE_PROMPTS = {
         "missing hijab, white t-shirt"
     )
 }
+
+
+def generate_image(
+    client: genai.Client,
+    reference_image: Image.Image,
+    prompt: str,
+    negative_prompt: str,
+) -> Image.Image:
+    image_buffer = io.BytesIO()
+    reference_image.save(image_buffer, format="PNG")
+    image_data = base64.b64encode(image_buffer.getvalue()).decode("ascii")
+    request_prompt = (
+        f"{prompt}\nAvoid these elements: {negative_prompt}"
+    )
+    interaction = client.interactions.create(
+        model=MODEL_ID,
+        input=[
+            {"type": "text", "text": request_prompt},
+            {
+                "type": "image",
+                "data": image_data,
+                "mime_type": "image/png",
+            },
+        ],
+    )
+    if not interaction.output_image or not interaction.output_image.data:
+        raise RuntimeError(f"{MODEL_ID} returned no generated image.")
+    generated_bytes = base64.b64decode(interaction.output_image.data, validate=True)
+    with Image.open(io.BytesIO(generated_bytes)) as image:
+        return image.convert("RGB")
+
+
+def package_versions() -> dict[str, str]:
+    names = ("google-genai", "jsonschema", "Pillow")
+    return {name: importlib.metadata.version(name) for name in names}
 
 
 def load_shot(shot_id: str) -> tuple[dict[str, Any], dict[str, Any]]:
@@ -73,12 +101,14 @@ def load_shot(shot_id: str) -> tuple[dict[str, Any], dict[str, Any]]:
         negative_prompt = f"{negative_prompt}, {SHOT_NEGATIVE_PROMPTS[shot_id]}"
 
     prompt = (
-        "Photorealistic cinematic film still. Follow this shot description "
-        "closely; prioritize the specified people, clothing, props, and setting. "
+        "Create one photorealistic cinematic film still. Follow this shot "
+        "description closely; prioritize the specified people, clothing, props, "
+        "and setting. "
         f"{shot['image_prompt']} "
-        "Use the supplied approved character reference for the protagonist's "
-        "face and black hijab. Keep the requested wide composition rather than "
-        "copying the portrait crop. No text or logos."
+        "The attached image is the approved character reference for the "
+        "protagonist. Preserve her recognizable face, black hijab, and modest "
+        "black clothing while adapting her naturally to the requested full-body "
+        "scene. Do not copy the portrait crop. No text or logos."
     )
     return (
         {
@@ -97,11 +127,12 @@ def main() -> int:
     )
     parser.add_argument("--shot-id", required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
-    parser.add_argument("--seed", type=int, default=DEFAULT_SEED)
     arguments = parser.parse_args()
 
-    if not torch.cuda.is_available():
-        parser.error("A CUDA GPU is required; select a Kaggle GPU accelerator.")
+    api_key = os.environ.get("GEMINI_API_KEY")
+    if not api_key:
+        parser.error("Set GEMINI_API_KEY using Kaggle Secrets before running this script.")
+    client = genai.Client(api_key=api_key, http_options={"api_version": "v1beta"})
 
     try:
         shot_data, _ = load_shot(arguments.shot_id)
@@ -129,35 +160,26 @@ def main() -> int:
         params: dict[str, Any] = {
             "shot_id": arguments.shot_id,
             "model": MODEL_ID,
-            "adapter": ADAPTER_REPO,
+            "reference_method": "image input to Gemini",
             "reference_images": [
                 path.relative_to(REPO_ROOT).as_posix()
                 for path in shot_data["reference_paths"]
             ],
             "prompt": shot_data["prompt"],
             "negative_prompt": shot_data["negative_prompt"],
-            "ip_adapter_scale": ADAPTER_SCALE,
-            "width": WIDTH,
-            "height": HEIGHT,
-            "num_inference_steps": INFERENCE_STEPS,
-            "guidance_scale": GUIDANCE_SCALE,
-            "seed": arguments.seed,
             "output": image_path.name,
         }
         image = timed_call(
             "keyframe",
-            f"{MODEL_ID}+{ADAPTER_REPO}",
+            MODEL_ID,
             params,
-            arguments.seed,
+            None,
             None,
             generate_image,
+            client,
             reference_image,
             shot_data["prompt"],
             shot_data["negative_prompt"],
-            arguments.seed,
-            width=WIDTH,
-            height=HEIGHT,
-            adapter_scale=ADAPTER_SCALE,
             note="Kaggle GPU time; monetary cost not estimated.",
         )
 
@@ -170,9 +192,8 @@ def main() -> int:
             "stage": "keyframe",
             "shot_id": arguments.shot_id,
             "model": MODEL_ID,
-            "adapter": ADAPTER_REPO,
+            "reference_method": "image input to Gemini",
             "parameters": params,
-            "gpu": torch.cuda.get_device_name(0),
             "libraries": package_versions(),
             "output": image_path.name,
             "output_sha256": hashlib.sha256(image_path.read_bytes()).hexdigest(),

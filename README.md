@@ -44,24 +44,19 @@ the current public repository `hann2004/ai_cinematic_storytelling`.
 
 ## First storyboard keyframe (Kaggle)
 
-The earlier SDXL/IP-Adapter keyframe did not match the intended home-gate
-composition. The user chose to return to a realistic live-action look and try
-the public [RealVisXL SDXL checkpoint](https://huggingface.co/SG161222/RealVisXL_V4.0)
-with the existing approved character reference. The first RealVisXL result did
-not follow the requested character and setting, so the revised shot prompt has
-not yet been tested and may still fail. Both model repositories are public and
-ungated, so no Hugging Face token is required. The generator now uses each
-shot's scene prompt once instead of repeating the full character and style
-descriptions. Shot 1 explicitly names the protagonist and her two adult
-parents, makes her mother visibly about 60, calls for full-length framing,
-visible luggage, and a tearful farewell, and describes the urban home setting.
-The shot prompt and visual direction are recorded in `storyboard.json`. Use
+The earlier SDXL/IP-Adapter keyframes did not match the intended scenes. The
+keyframe runner now uses Google's Gemini image-generation API, sending the
+approved character reference and one concise scene prompt together. Add a
+Gemini API key as the Kaggle Secret `GEMINI_API_KEY`; API quota or billing may
+apply. Shot 1 specifies the protagonist, her older mother and father, full-body
+framing, visible luggage, and a tearful farewell in an urban home setting. The
+shot prompt is recorded in `storyboard.json`. Use
 [`notebooks/keyframes.ipynb`](notebooks/keyframes.ipynb) to generate only
-`shot-01` in Kaggle with RealVisXL + IP-Adapter. The tracked implementation is
+`shot-01` in Kaggle. The tracked implementation is
 [`pipeline/kaggle_keyframes.py`](pipeline/kaggle_keyframes.py).
 
 1. Commit and push the latest storyboard, schema, pipeline, and notebook files.
-2. Import the latest notebook into Kaggle and enable Internet and a GPU.
+2. Import the latest notebook into Kaggle and enable Internet.
 3. Review the shot prompt in the notebook's source repository, then run its
    cells in order. The final launch cell makes one generation request for
    `shot-01`; rerunning it creates a separate output folder.
@@ -70,5 +65,5 @@ The shot prompt and visual direction are recorded in `storyboard.json`. Use
    project only if approved.
 
 The selected narration remains unchanged. The bus departure is a silent shot,
-and the nine storyboard holds total 90 seconds. Review the new model's result
-after one attempt before deciding whether to continue.
+and the nine storyboard holds total 90 seconds. Review the Gemini result before
+deciding whether to continue.
