@@ -53,8 +53,9 @@ not yet been tested and may still fail. Both model repositories are public and
 ungated, so no Hugging Face token is required. The generator now uses each
 shot's scene prompt once instead of repeating the full character and style
 descriptions. Shot 1 explicitly names the protagonist and her two adult
-parents, their clothing, and the urban home setting. The shot prompt and visual
-direction are recorded in `storyboard.json`. Use
+parents, makes her mother visibly about 60, calls for full-length framing,
+visible luggage, and a tearful farewell, and describes the urban home setting.
+The shot prompt and visual direction are recorded in `storyboard.json`. Use
 [`notebooks/keyframes.ipynb`](notebooks/keyframes.ipynb) to generate only
 `shot-01` in Kaggle with RealVisXL + IP-Adapter. The tracked implementation is
 [`pipeline/kaggle_keyframes.py`](pipeline/kaggle_keyframes.py).

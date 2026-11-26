@@ -39,7 +39,8 @@ NEGATIVE_PROMPT = (
 SHOT_NEGATIVE_PROMPTS = {
     "shot-01": (
         "portrait, headshot, close-up, close-up face, solo woman, isolated subject, "
-        "empty background, cropped body, giant face, rural village, countryside, "
+        "empty background, cropped body, cropped legs, cropped feet, close framing, "
+        "giant face, rural village, countryside, "
         "mud hut, thatched hut, shanty, visibly impoverished home, luxury mansion, "
         "children, toddlers, babies, schoolchildren, uncovered hair, bareheaded, "
         "missing hijab, white t-shirt"
