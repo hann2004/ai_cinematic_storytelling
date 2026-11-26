@@ -3,15 +3,15 @@
   "language": "am",
   "audience": "University students, especially those living away from home",
   "intent": "Help students living away from home feel understood and see that leaving home does not mean forgetting it; growth, resilience, and new friendships can create a second sense of home.",
-  "target_duration_seconds": 85,
+  "target_duration_seconds": 80,
   "aspect_ratios": [
     "16:9",
     "9:16"
   ],
-  "style_block": "Cinematic, realistic Ethiopian university-life photography; natural light; emotionally restrained expressions; warm, grounded colors; authentic Ethiopian settings and people; no text or logos in generated images. Keep the protagonist's face, age, deep teal hijab, beige modest outfit, and backpack consistent in every shot.",
+  "style_block": "Cinematic, realistic Ethiopian university-life photography; natural light, bright flattering exposure, and warm grounded colors; authentic Ethiopian Habesha settings and people, not generic pan-African or other-country imagery; no text or logos in generated images. Keep the protagonist's face, age, light golden Ethiopian complexion with warm undertones, plain black hijab, simple elegant black abaya, and plain black laptop-sized tote bag consistent in every shot where she carries it. Give this fictional character a naturally graceful, youthful and attractive Habesha appearance, with a softly oval face, expressive dark brown eyes, and defined brows. Use the supplied photo only as broad visual guidance; do not copy the person's exact face, identity, or distinctive details. The protagonist is 164 cm tall and weighs about 50 kg, with natural realistic proportions. The protagonist and her Muslim family may wear hijabs; other university students are Ethiopian and wear ordinary campus clothing without hijabs.",
   "character": {
     "id": "protagonist",
-    "description": "A fictional 21-year-old Ethiopian Muslim university student with warm brown skin and dark brown eyes. She wears a deep teal hijab and a modest beige outfit. Her appearance, clothing, and age remain consistent throughout.",
+    "description": "A fictional 21-year-old Ethiopian Habesha Muslim university student, 164 cm tall and about 50 kg, with realistic natural proportions and a bright light golden Ethiopian complexion with warm undertones. She has a softly oval face, expressive dark brown eyes, defined brows, and a naturally graceful, youthful, attractive appearance. Use the supplied photo only for broad visual cues, not as a face or identity to recreate; do not copy its person's distinctive features. She wears a plain black hijab and a simple elegant black abaya with no bright colors or decorative patterns. When carrying study materials, she uses a plain black sturdy tote bag large enough for a laptop, never a backpack. Her appearance, clothing, and age remain consistent throughout.",
     "reference_image": null,
     "reference_status": "Not generated; create and approve a character/style reference before production keyframes."
   },
@@ -19,9 +19,9 @@
     {
       "id": "shot-01",
       "duration_seconds": 10,
-      "narration_am": "አንዳንድ ሕልሞች ከቤታችን ያርቁናል፤ ወደ ማንነታችን ግን ያቀርቡናል። እሷም ከቤተሰቧ ተለይታ ወደ ዩኒቨርሲቲ ጉዞዋን ጀመረች።",
+      "narration_am": "ከቤተሰቧ፣ ከለመደችው አካባቢ፣ ከየቀኑ ሰላምታና ከእናቷ ድምፅ ተለይታ ወደ ዩኒቨርሲቲ ጉዞዋን ጀመረች።",
       "subtitle_en": "",
-      "image_prompt": "A cinematic realistic scene inside a long-distance Ethiopian bus traveling through the Ethiopian countryside. The same fictional 21-year-old Ethiopian Muslim woman with warm brown skin and dark brown eyes wears her deep teal hijab and beige modest outfit, sitting beside the window with her suitcase nearby. She watches green mountains, rural villages, red-earth roads, and small houses pass by; her reflection is soft in the glass. Thoughtful and slightly emotional as she leaves home to pursue university dreams. Natural daylight, authentic Ethiopian environment, cinematic photography, wide 16:9 composition, no text or logos.",
+      "image_prompt": "A cinematic realistic scene inside a long-distance Ethiopian bus traveling through the Ethiopian countryside. The same fictional 21-year-old Ethiopian Habesha Muslim woman, 164 cm tall and about 50 kg with natural proportions, has a bright light golden Ethiopian complexion with warm undertones, a softly oval face, expressive dark brown eyes, defined brows, and a naturally graceful, youthful appearance. She wears her plain black hijab and simple black abaya, sitting beside the window with her suitcase and plain black laptop-sized tote bag nearby. She watches green mountains, rural villages, red-earth roads, and small houses pass by; her reflection is soft in the glass. Thoughtful and slightly emotional as she leaves home to pursue university dreams. Bright flattering natural daylight, authentic Ethiopian environment, cinematic photography, wide 16:9 composition, no text or logos.",
       "motion_prompt": "The bus moves steadily along the road; the countryside drifts past the window while the camera makes a gentle push toward her reflection. Keep her face and clothing stable.",
       "reference_images": [],
       "reason": "Open with the physical journey away from home and establish the central tension between ambition and belonging."
@@ -29,19 +29,19 @@
     {
       "id": "shot-02",
       "duration_seconds": 10,
-      "narration_am": "መጀመሪያ አዲስ ቦታና ሰዎች አስደሰቷት። ለመማርና ለመለወጥ ጓጉታ ነበር።",
+      "narration_am": "መጀመሪያ ላይ ሁሉም ነገር አዲስ ነበር። አዲስ ቦታ፣ አዲስ ሰዎች፣ አዲስ ሕይወት... እና አዲስ ተስፋ።",
       "subtitle_en": "",
-      "image_prompt": "A wide cinematic establishing shot of an authentic Ethiopian public university campus. The same young Ethiopian Muslim woman in her deep teal hijab and beige modest outfit has just arrived, carrying a backpack and looking around with curiosity and excitement. Ethiopian students walk in small groups in everyday clothing; the campus has realistic university buildings, green trees, concrete paths, and books. Bright natural daylight, photorealistic, wide 16:9 composition, no text or logos.",
+      "image_prompt": "A wide cinematic establishing shot of an authentic Ethiopian public university campus. The same naturally attractive fictional young Ethiopian Habesha Muslim woman, 164 cm tall and about 50 kg with natural proportions, has a bright light golden Ethiopian complexion with warm undertones, a softly oval face, expressive dark brown eyes, defined brows, and a naturally graceful, youthful appearance. She wears her plain black hijab and simple black abaya, carrying a plain black tote bag large enough for a laptop as she looks around with curiosity and excitement. Other Ethiopian students walk in small groups wearing ordinary everyday campus clothing; the other women are not wearing hijabs. The campus has realistic university buildings, green trees, concrete paths, and books. Bright flattering natural daylight, photorealistic, wide 16:9 composition, no text or logos.",
       "motion_prompt": "Students walk naturally in the background as the camera makes a slow lateral move; the protagonist turns her gaze across the campus with quiet curiosity.",
       "reference_images": [],
       "reason": "Show the hopeful first impression of the new place before homesickness complicates the journey."
     },
     {
       "id": "shot-03",
-      "duration_seconds": 9,
-      "narration_am": "ከቤት መራቅ አዲስ ቦታ መድረስ ብቻ አይደለም፤ ከለመድነው ሕይወት መለየትም ነው።",
+      "duration_seconds": 10,
+      "narration_am": "ግን ሕይወት ሁሌም እንደምናስበው አይሆንም።",
       "subtitle_en": "",
-      "image_prompt": "A realistic cinematic scene inside a modest Ethiopian university dormitory. The same young Ethiopian Muslim woman in a deep teal hijab and beige modest outfit unpacks a suitcase beside a simple bed. A desk, a few books, folded clothes, and a backpack make the room feel lived-in; other female students settle in softly out of focus. She pauses and takes in the unfamiliar room, hopeful but slightly nervous. Natural window light, authentic student residence, cinematic composition, 16:9, no text or logos.",
+      "image_prompt": "A realistic cinematic scene inside a modest Ethiopian university dormitory. The same naturally attractive fictional young Ethiopian Habesha Muslim woman, 164 cm tall and about 50 kg with natural proportions, has a bright light golden Ethiopian complexion with warm undertones, a softly oval face, expressive dark brown eyes, defined brows, and a naturally graceful, youthful appearance. She wears her plain black hijab and simple black abaya as she unpacks a suitcase beside a simple bed; her plain black laptop-sized tote bag rests nearby. Other Ethiopian female students settle in softly out of focus, wearing ordinary campus clothing without hijabs. A desk, books, and folded clothes make the room feel lived-in. She pauses and takes in the unfamiliar room, hopeful but slightly nervous. Bright natural window light, authentic student residence, cinematic composition, 16:9, no text or logos.",
       "motion_prompt": "She places one folded item on the bed, pauses, and looks around the room; a gentle, nearly static camera move.",
       "reference_images": [],
       "reason": "Make the cost of leaving familiar routines visible through the quiet transition into dorm life."
@@ -49,9 +49,9 @@
     {
       "id": "shot-04",
       "duration_seconds": 10,
-      "narration_am": "አንዳንድ ምሽቶች ብቸኝነት ይሰማታል። የቤቷን ምግብ፣ የእናቷን ድምፅና የቤተሰቧን ሳቅ ታስታውሳለች።",
+      "narration_am": "አንዳንድ ምሽቶች ዝምታው ይከብዳታል። የቤቷን ምግብ፣ የቤተሰቧን ፈገግታና የምትወዳቸውን ሰዎች ታስታውሳለች።",
       "subtitle_en": "",
-      "image_prompt": "An emotionally restrained cinematic night scene in a modest Ethiopian university dormitory. The same young woman in her deep teal hijab sits on her bed holding a small, non-identifiable family photograph and looking at it thoughtfully. Unpacked suitcase, textbooks, and notebook on the desk; campus lights far outside the window. Her expression conveys loneliness and homesickness without crying. Warm bedside lamp against cool evening light, intimate realistic photography, 16:9, no readable text or logos.",
+      "image_prompt": "An emotionally restrained cinematic night scene in a modest Ethiopian university dormitory. The same naturally attractive fictional young Ethiopian Habesha Muslim woman, 164 cm tall and about 50 kg with natural proportions, has a bright light golden Ethiopian complexion with warm undertones, a softly oval face, expressive dark brown eyes, defined brows, and a naturally graceful, youthful appearance. She wears her plain black hijab and simple black abaya as she sits on her bed holding a small, non-identifiable photograph of her Muslim family, looking at it thoughtfully. Her plain black laptop-sized tote bag, unpacked suitcase, textbooks, and notebook are nearby; campus lights are far outside the window. Her expression conveys loneliness and homesickness without crying. Keep her face clearly visible in balanced warm lamplight, intimate realistic photography, 16:9, no readable text or logos.",
       "motion_prompt": "She studies the photograph quietly, then lowers her eyes; the camera slowly pushes in while the campus lights stay soft in the distance.",
       "reference_images": [],
       "reason": "Give the audience a specific, intimate image for the loneliness and memories described in the narration."
@@ -59,9 +59,9 @@
     {
       "id": "shot-05",
       "duration_seconds": 10,
-      "narration_am": "ከቤተሰቧ ጋር በስልክ ስታወራ፣ «ቤት ብሆን እንዴት ደስ ባለኝ!» ብላ ታስባለች። «ለሕልሜ ስል የተውኩት ነገር ይህን ያህል ያስከፍላል?» ብላ በውስጧ ትጠይቃለች።",
+      "narration_am": "አንዳንድ ጊዜም፣ «ይህን ሁሉ መተው ትክክል ነበር?» ብላ ትጠይቃለች።",
       "subtitle_en": "",
-      "image_prompt": "A quiet evening scene in the same Ethiopian university dorm room. The same fictional student in her deep teal hijab and beige outfit sits by the window speaking to family on her phone; show no other person's face and no readable phone screen. She listens with affection and longing, with a small pause after the call. Warm lamp light and cool campus night outside, natural understated emotion, cinematic close medium shot, 16:9, no text or logos.",
+      "image_prompt": "A quiet evening scene in the same Ethiopian university dorm room. The same naturally attractive fictional Ethiopian Habesha Muslim student, 164 cm tall and about 50 kg with natural proportions, has a bright light golden Ethiopian complexion with warm undertones, a softly oval face, expressive dark brown eyes, defined brows, and a naturally graceful, youthful appearance. She wears her plain black hijab and simple black abaya while sitting by the window speaking to her Muslim family on the phone; her plain black laptop-sized tote bag is nearby. Show no other person's face and no readable phone screen. She listens with affection and longing, with a small pause after the call. Keep her face clearly visible in flattering warm light; cool campus night outside, natural understated emotion, cinematic close medium shot, 16:9, no text or logos.",
       "motion_prompt": "She listens on the phone, gives a small restrained smile, then looks through the window after the call; slow camera move, no exaggerated acting.",
       "reference_images": [],
       "reason": "Make the inner question in the script concrete while protecting the privacy and likeness of family members."
@@ -69,9 +69,9 @@
     {
       "id": "shot-06",
       "duration_seconds": 10,
-      "narration_am": "ቀናት ሲያልፉ ችግሮችን መቋቋም፣ ራሷን መቻልና ከስህተቶቿ መማር ጀመረች።",
+      "narration_am": "ነገር ግን በየቀኑ ትንሽ ትንሽ ትማራለች። ብቻዋን መቆምን፣ ፈተናዎችን መቋቋምን፣ ከአዳዲስ ሰዎች ጋር መተዋወቅን።",
       "subtitle_en": "",
-      "image_prompt": "A cinematic realistic scene in an Ethiopian university library. The same student, wearing her deep teal hijab and beige modest outfit, studies at a desk with textbooks, notebooks, and a laptop, taking notes with focus and determination. Other Ethiopian students study independently in the background in varied everyday clothing. Authentic academic environment, natural light, realistic details, wide 16:9 composition, no text or logos.",
+      "image_prompt": "A cinematic realistic scene in an Ethiopian university library. The same naturally attractive fictional young Ethiopian Habesha Muslim student, 164 cm tall and about 50 kg with natural proportions, has a bright light golden Ethiopian complexion with warm undertones, a softly oval face, expressive dark brown eyes, defined brows, and a naturally graceful, youthful appearance. She wears her plain black hijab and simple black abaya while studying at a desk with textbooks, notebooks, and a laptop; her plain black laptop-sized tote bag is beside the desk. She takes notes with focus and determination. Other Ethiopian students study independently in the background in varied everyday campus clothing; the other women are not wearing hijabs. Keep her face bright and clearly visible. Authentic academic environment, natural light, realistic details, wide 16:9 composition, no text or logos.",
       "motion_prompt": "She reads, writes a note, pauses to think, then continues with renewed focus; gentle camera push-in, stable face and clothing.",
       "reference_images": [],
       "reason": "Show growth as repeated everyday effort rather than a sudden transformation."
@@ -79,19 +79,19 @@
     {
       "id": "shot-07",
       "duration_seconds": 10,
-      "narration_am": "ከእንግዶች መካከል ጓደኞችን አገኘች። አብረው ተማሩ፣ ሳቁና ተደጋገፉ። ቀስ በቀስም እንግዳው ቦታ የለመደችው ሆነ።",
+      "narration_am": "ከእንግዶች መካከል ጓደኞችን ታገኛለች። ከችግሮች መካከል ጥንካሬዋን ታውቃለች። እናም በአንድ ወቅት ከቤት ርቃ የመጣችው ያቺ ልጅ፣ በአዲሱ ቦታ ሌላ ቤት መገንባት ትጀምራለች።",
       "subtitle_en": "",
-      "image_prompt": "A warm, joyful cinematic afternoon on an Ethiopian university campus. The same young woman in a deep teal hijab and beige modest outfit sits with a small group of fictional Ethiopian female university friends in varied everyday clothing. They share books, talk, laugh, and support one another; they are not all wearing hijabs. Green trees, campus buildings, and students in the background. Natural, believable expressions, photorealistic, 16:9, no text or logos.",
+      "image_prompt": "A warm, joyful cinematic afternoon on an Ethiopian university campus. The same naturally attractive fictional young Ethiopian Habesha Muslim woman, 164 cm tall and about 50 kg with natural proportions, has a bright light golden Ethiopian complexion with warm undertones, a softly oval face, expressive dark brown eyes, defined brows, and a naturally graceful, youthful appearance. She wears her plain black hijab and simple black abaya and has her plain black laptop-sized tote bag with her while sitting with a small group of fictional Ethiopian female university friends. Her friends wear varied ordinary everyday campus clothing without hijabs. They share books, talk, laugh, and support one another. Green trees, campus buildings, and other Ethiopian students in everyday clothing without hijabs are visible in the background. Bright flattering daylight keeps her face luminous; natural, believable expressions, photorealistic, 16:9, no text or logos.",
       "motion_prompt": "The friends share a book and laugh gently; the protagonist joins in, becoming more at ease. Slow, steady camera movement and natural gestures.",
       "reference_images": [],
       "reason": "Show the first visible sign that unfamiliar people and places are becoming a community."
     },
     {
       "id": "shot-08",
-      "duration_seconds": 16,
-      "narration_am": "በችግር ጥንካሬዋን፣ በብቸኝነትም ራሷን መቻሏን ተማረች። በአዳዲስ ሰዎች መካከልም አዲስ ቤተሰብ አገኘች። ከቤት መራቅ ቤትን መርሳት አይደለም። ቤት የምንወዳቸው ሰዎች፣ የምንገነባቸው ትዝታዎችና ራሳችንን የምናገኝበት ቦታም ነው።",
+      "duration_seconds": 10,
+      "narration_am": "ምክንያቱም አንዳንድ ጉዞዎች ወደ ሌላ ቦታ ብቻ አይደሉም፤ ወደ አዲስ ራስ የሚወስዱንም ናቸው። ቤት ማለት የተወለድንበት ቦታ ብቻ አይደለም። ሕልማችንን የምንገነባበትም ቦታ ነው።",
       "subtitle_en": "",
-      "image_prompt": "A hopeful cinematic final scene on an Ethiopian university campus at golden hour. The same fictional 21-year-old Ethiopian Muslim woman in her deep teal hijab and beige modest outfit walks confidently with her familiar backpack and books. Her expression is peaceful and hopeful; students and green trees appear naturally in the background. Frame her with clear space around her for later reframing to vertical and horizontal formats. Photorealistic, warm sunset light, cinematic wide 16:9 composition, no text or logos.",
+      "image_prompt": "A hopeful cinematic final scene on an Ethiopian university campus at golden hour. The same naturally attractive fictional 21-year-old Ethiopian Habesha Muslim woman, 164 cm tall and about 50 kg with natural proportions, has a bright light golden Ethiopian complexion with warm undertones, a softly oval face, expressive dark brown eyes, defined brows, and a naturally graceful, youthful appearance. She wears her plain black hijab and simple black abaya and walks confidently carrying a plain black tote bag large enough for her laptop and books. Her expression is peaceful and hopeful; other Ethiopian students in ordinary campus clothing without hijabs and green trees appear naturally in the background. Bright flattering light keeps her face luminous. Frame her with clear space around her for later reframing to vertical and horizontal formats. Photorealistic, warm sunset light, cinematic wide 16:9 composition, no text or logos.",
       "motion_prompt": "She walks forward at an unhurried pace as the camera gently tracks with her; end on a calm, hopeful hold suitable for a separate AI-made end card.",
       "reference_images": [],
       "reason": "Resolve the story with her growth and the idea that belonging can expand without erasing where she came from."
@@ -107,7 +107,7 @@
     }
   ],
   "production_notes": [
-    "The first generated narration take measured 114.32 seconds. This shorter Amharic draft must be timed after generation to confirm a 60–90 second final runtime.",
+    "The selected Amharic narration is outputs/narration_am_v2.wav and measures 72.46 seconds. Its exact text must remain synchronized with the narration fields in this storyboard.",
     "English subtitles are intentionally blank until a translation is reviewed by the filmmaker or a fluent Amharic speaker.",
     "Create and approve a character/style reference image before generating production keyframes; the current smoke-test image is not the character reference.",
     "The image prompts are drafted for 16:9. Preserve subject-safe composition so assembly can reframe them to 9:16.",

@@ -14,11 +14,11 @@ from pipeline.logger import timed_call
 REPO_ROOT = Path(__file__).resolve().parents[1]
 STORYBOARD_PATH = REPO_ROOT / "storyboard.json"
 SCHEMA_PATH = REPO_ROOT / "schema" / "storyboard.schema.json"
-DEFAULT_OUTPUT_PATH = REPO_ROOT / "outputs" / "narration_am.wav"
+DEFAULT_OUTPUT_PATH = REPO_ROOT / "outputs" / "narration_am_v2.wav"
 MODEL = "gemini-3.8-flash-tts"
 VOICE = "Leda"
 STYLE = (
-    "A youthful young-adult woman speaking fluent Amharic in a natural, "
+    "A feminine, youthful adult woman speaking fluent Amharic in a natural, "
     "conversational, warm, sincere way. Use clear Amharic pronunciation "
     "and natural rhythm, with a gentle unhurried pace. Read the supplied "
     "text exactly as written; do not translate, paraphrase, or add words."
@@ -128,7 +128,7 @@ def main() -> int:
         "--output",
         type=Path,
         default=DEFAULT_OUTPUT_PATH,
-        help="Output WAV path (default: outputs/narration_am.wav).",
+        help="Output WAV path (default: outputs/narration_am_v2.wav).",
     )
     parser.add_argument(
         "--force",
