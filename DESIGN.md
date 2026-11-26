@@ -33,6 +33,7 @@ Each shot's specific purpose is recorded in `storyboard.json`. The sequence move
 ## Current production notes
 
 - The Amharic narration and image prompts are a working draft supplied by the filmmaker.
+- The filmmaker approved `outputs/character_reference_ipadapter.png` as the protagonist's visual reference. The generated character wears the requested black hijab and abaya; the filmmaker accepted the makeup in the image. Generation metadata and the model-call record are in `outputs/character_reference_ipadapter.json` and `outputs/character_reference_run.jsonl`.
 - The shot durations are estimates. Time the narration and edit to a final runtime of 60–90 seconds.
 - English subtitles have not been drafted; prepare and review them with the filmmaker or a fluent Amharic speaker.
-- The earlier text-only Cloudflare character-reference image was rejected by the filmmaker and is not approved for production. The replacement reference-guided generation is documented in `notebooks/character_reference.ipynb`; no production shot images or video have been generated.
+- The earlier text-only Cloudflare character-reference image was rejected by the filmmaker and is not approved for production. The approved reference-guided image is documented in `notebooks/character_reference.ipynb`; no production shot images or video have been generated.

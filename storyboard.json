@@ -12,8 +12,8 @@
   "character": {
     "id": "protagonist",
     "description": "A fictional 21-year-old Ethiopian Habesha Muslim university student, 164 cm tall and about 50 kg, with realistic natural proportions and a bright light golden Ethiopian complexion with warm undertones. She has a softly oval face, expressive dark brown eyes, defined brows, and a naturally graceful, youthful, attractive appearance. Use the supplied photo only for broad visual cues, not as a face or identity to recreate; do not copy its person's distinctive features. She wears a plain black hijab and a simple elegant black abaya with no bright colors or decorative patterns. When carrying study materials, she uses a plain black sturdy tote bag large enough for a laptop, never a backpack. Her appearance, clothing, and age remain consistent throughout.",
-    "reference_image": null,
-    "reference_status": "Not generated; create and approve a character/style reference before production keyframes."
+    "reference_image": "outputs/character_reference_ipadapter.png",
+    "reference_status": "Approved by the filmmaker as the main-character visual reference; generated with SDXL and IP-Adapter in Kaggle."
   },
   "shots": [
     {
