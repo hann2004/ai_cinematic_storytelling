@@ -73,8 +73,9 @@ deciding whether to continue.
 To create the finished film from the nine images and the approved narration,
 follow the [video assembly guide](docs/video-assembly.md). It covers
 prerequisites, input naming, narration-to-shot alignment, score generation,
-rendering, verification, troubleshooting, and what to record in a production
-report.
+English subtitle translation and rendering, verification, troubleshooting,
+and what to record in a production report. The output MP4 has burned-in
+English subtitles, with a matching `.srt` sidecar.
 
 ```bash
 python3 -m pipeline.assemble

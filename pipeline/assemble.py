@@ -5,6 +5,7 @@ import re
 import shutil
 import subprocess
 import tempfile
+import textwrap
 from pathlib import Path
 
 from pipeline.music import DEFAULT_OUTPUT as DEFAULT_SCORE
@@ -231,7 +232,79 @@ def _allocate_scene_frames(
     return allocations, segment_by_shot
 
 
-def _video_filter(shots: list[dict[str, object]], frame_counts: list[int]) -> str:
+def _subtitle_cues(
+    shots: list[dict[str, object]],
+    frame_counts: list[int],
+    segments_by_shot: dict[int, tuple[float, float]],
+) -> list[tuple[float, float, str]]:
+    cues: list[tuple[float, float, str]] = []
+    for shot_index, shot in enumerate(shots):
+        subtitle = shot["subtitle_en"].strip()
+        narration = shot["narration_am"].strip()
+        if narration and not subtitle:
+            raise ValueError(f"{shot['id']} has narration but no English subtitle.")
+        if not narration and subtitle:
+            raise ValueError(f"{shot['id']} has a subtitle but no narration.")
+        if not subtitle:
+            continue
+
+        segment_start, segment_end = segments_by_shot[shot_index]
+        scene_start = sum(frame_counts[:shot_index]) / FRAME_RATE
+        sentences = re.split(r"(?<=[.!?])\s+", subtitle)
+        chunks: list[str] = []
+        for sentence in sentences:
+            lines = textwrap.wrap(
+                sentence,
+                width=44,
+                break_long_words=False,
+                break_on_hyphens=False,
+            )
+            chunks.extend(
+                "\n".join(lines[index : index + 2])
+                for index in range(0, len(lines), 2)
+            )
+        weights = [max(1, len(chunk.replace("\n", " "))) for chunk in chunks]
+        total_weight = sum(weights)
+        available = segment_end - segment_start
+        gap = min(0.08, available / (2 * len(chunks)))
+        usable = available - gap * (len(chunks) - 1)
+        cursor = segment_start
+        for index, (chunk, weight) in enumerate(zip(chunks, weights)):
+            end = segment_start + usable * sum(weights[: index + 1]) / total_weight
+            start = cursor
+            if end <= start:
+                raise ValueError(f"Could not assign subtitle timing for {shot['id']}.")
+            cues.append((scene_start + start, scene_start + end, chunk))
+            cursor = end + gap
+    return cues
+
+
+def _write_srt(
+    subtitle_path: Path,
+    cues: list[tuple[float, float, str]],
+) -> None:
+    def timestamp(seconds: float) -> str:
+        milliseconds = round(seconds * 1000)
+        hours, milliseconds = divmod(milliseconds, 3_600_000)
+        minutes, milliseconds = divmod(milliseconds, 60_000)
+        whole_seconds, milliseconds = divmod(milliseconds, 1000)
+        return (
+            f"{hours:02}:{minutes:02}:{whole_seconds:02},"
+            f"{milliseconds:03}"
+        )
+
+    with subtitle_path.open("w", encoding="utf-8", newline="\n") as subtitle_file:
+        for index, (start, end, text) in enumerate(cues, start=1):
+            subtitle_file.write(
+                f"{index}\n{timestamp(start)} --> {timestamp(end)}\n{text}\n\n"
+            )
+
+
+def _video_filter(
+    shots: list[dict[str, object]],
+    frame_counts: list[int],
+    subtitle_path: Path,
+) -> str:
     filters: list[str] = []
     for index, (shot, scene_frames) in enumerate(zip(shots, frame_counts)):
         clip_frames = scene_frames + CROSSFADE_FRAMES
@@ -264,9 +337,18 @@ def _video_filter(shots: list[dict[str, object]], frame_counts: list[int]) -> st
         previous_label = next_label
 
     fade_out_start = sum(frame_counts) / FRAME_RATE - 1
+    escaped_subtitle_path = (
+        subtitle_path.resolve().as_posix().replace("\\", "\\\\").replace(":", "\\:")
+    )
     filters.append(
         f"[{previous_label}]fade=t=in:st=0:d=1,"
-        f"fade=t=out:st={fade_out_start:.3f}:d=1,format=yuv420p[video]"
+        f"fade=t=out:st={fade_out_start:.3f}:d=1,"
+        "format=yuv420p,"
+        f"subtitles=filename='{escaped_subtitle_path}':"
+        "force_style='FontName=DejaVu Sans,FontSize=24,"
+        "PrimaryColour=&H00FFFFFF,OutlineColour=&H00000000,"
+        "BorderStyle=1,Outline=2,Shadow=1,MarginV=30,Alignment=2'"
+        "[video]"
     )
     return ";".join(filters)
 
@@ -332,7 +414,10 @@ def _verify_output(output: Path, target_duration: int) -> None:
             "-v",
             "error",
             "-show_entries",
-            "format=duration:stream=codec_type,codec_name,width,height",
+            (
+                "format=duration:"
+                "stream=codec_type,codec_name,width,height,sample_rate,channels"
+            ),
             "-of",
             "json",
             str(output),
@@ -382,6 +467,7 @@ def assemble_film(
     narration = _resolve_path(narration)
     output = _resolve_path(output)
     score = _resolve_path(score)
+    subtitle_output = output.with_suffix(".srt")
     if music_track is not None:
         music_track = _resolve_path(music_track)
     if not storyboard_path.is_file():
@@ -391,6 +477,11 @@ def assemble_film(
     if output.exists() and not force:
         raise FileExistsError(
             f"{output} already exists. Review it first, or pass --force to replace it."
+        )
+    if subtitle_output.exists() and not force:
+        raise FileExistsError(
+            f"{subtitle_output} already exists. Review it first, or pass --force "
+            "to replace it."
         )
 
     storyboard, shots = _load_storyboard(storyboard_path)
@@ -421,6 +512,9 @@ def assemble_film(
     frame_counts, segments_by_shot = _allocate_scene_frames(
         shots, segments, target_duration
     )
+    subtitle_cues = _subtitle_cues(shots, frame_counts, segments_by_shot)
+    if not subtitle_cues:
+        raise ValueError("No English subtitle cues were found in the storyboard.")
 
     if music_track is None:
         if score.is_file() and not force:
@@ -450,7 +544,6 @@ def assemble_film(
         )
 
     output.parent.mkdir(parents=True, exist_ok=True)
-    video_filters = _video_filter(shots, frame_counts)
     audio_filters = _audio_filter(
         len(images),
         len(images) + 1,
@@ -458,43 +551,10 @@ def assemble_film(
         segments_by_shot,
         target_duration,
     )
-    filter_graph = f"{video_filters};{audio_filters}"
     command = ["ffmpeg", "-hide_banner", "-loglevel", "error"]
     for image in images:
         command.extend(("-loop", "1", "-framerate", str(FRAME_RATE), "-i", str(image)))
     command.extend(("-i", str(narration), "-i", str(music_track)))
-    command.extend(
-        (
-            "-filter_complex",
-            filter_graph,
-            "-map",
-            "[video]",
-            "-map",
-            "[audio]",
-            "-t",
-            str(target_duration),
-            "-c:v",
-            "libx264",
-            "-preset",
-            "veryfast",
-            "-crf",
-            "20",
-            "-pix_fmt",
-            "yuv420p",
-            "-r",
-            str(FRAME_RATE),
-            "-c:a",
-            "aac",
-            "-b:a",
-            "192k",
-            "-ar",
-            "48000",
-            "-ac",
-            "2",
-            "-movflags",
-            "+faststart",
-        )
-    )
     with tempfile.NamedTemporaryFile(
         prefix=f"{output.stem}.",
         suffix=".mp4",
@@ -502,15 +562,60 @@ def assemble_film(
         delete=False,
     ) as temporary_file:
         temporary_output = Path(temporary_file.name)
+    with tempfile.NamedTemporaryFile(
+        prefix=f"{subtitle_output.stem}.",
+        suffix=".srt",
+        dir=subtitle_output.parent,
+        delete=False,
+    ) as temporary_subtitle_file:
+        temporary_subtitle = Path(temporary_subtitle_file.name)
     try:
+        _write_srt(temporary_subtitle, subtitle_cues)
+        video_filters = _video_filter(shots, frame_counts, temporary_subtitle)
+        filter_graph = f"{video_filters};{audio_filters}"
+        command.extend(
+            (
+                "-filter_complex",
+                filter_graph,
+                "-map",
+                "[video]",
+                "-map",
+                "[audio]",
+                "-t",
+                str(target_duration),
+                "-c:v",
+                "libx264",
+                "-preset",
+                "veryfast",
+                "-crf",
+                "20",
+                "-pix_fmt",
+                "yuv420p",
+                "-r",
+                str(FRAME_RATE),
+                "-c:a",
+                "aac",
+                "-b:a",
+                "192k",
+                "-ar",
+                "48000",
+                "-ac",
+                "2",
+                "-movflags",
+                "+faststart",
+            )
+        )
         command.extend(("-y", str(temporary_output)))
         _run(command, "FFmpeg video assembly")
         _verify_output(temporary_output, target_duration)
+        temporary_subtitle.replace(subtitle_output)
         temporary_output.replace(output)
     finally:
         temporary_output.unlink(missing_ok=True)
+        temporary_subtitle.unlink(missing_ok=True)
 
     print(f"Created film: {output}")
+    print(f"Burned-in English subtitles; SRT sidecar: {subtitle_output}")
     print(
         f"Duration: {target_duration} seconds | "
         f"Frame: {FRAME_WIDTH}x{FRAME_HEIGHT} | "

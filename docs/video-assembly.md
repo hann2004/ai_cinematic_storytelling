@@ -14,12 +14,17 @@ to the stills, mixes narration with music, and exports an MP4.
 | Output | Description |
 | --- | --- |
 | `outputs/original_score.wav` | 90-second, locally synthesized instrumental score |
-| `outputs/final_film.mp4` | H.264 video with AAC stereo audio, 1280 × 720, 25 fps, 90 seconds |
+| `outputs/final_film.mp4` | H.264 video with burned-in English subtitles and AAC stereo audio; 1280 × 720, 25 fps, 90 seconds |
+| `outputs/final_film.srt` | Separate English subtitle file, timed to the narration and the finished edit |
 
 The current storyboard has nine 10-second shots. `shot-02` has no narration,
 so it remains silent in the voice track while the music continues. English
-subtitles are intentionally not generated because the storyboard does not yet
-contain a reviewed translation.
+subtitles are translated from the storyboard narration, broken into readable
+captions, and synchronized with the matching spoken passage. They are burned
+into the MP4 so they appear in ordinary players, and also supplied as an SRT
+file for accessibility and reuse. The bus scene remains subtitle-free.
+Because the subtitle text is a draft translation, have a fluent Amharic
+speaker review it before public release.
 
 ## Prerequisites
 
@@ -197,9 +202,12 @@ especially:
 1. The first scene starts with the farewell image and its matching narration.
 2. The bus departure is shown without voiceover.
 3. Each subsequent narration passage corresponds to its storyboard scene.
-4. The voice is understandable and the score does not mask it.
-5. Transitions do not obscure important faces, luggage, or story details.
-6. The ending has the intended hopeful hold and finishes cleanly.
+4. English subtitles appear at the matching spoken passage, are readable,
+   and do not cover important faces or story details.
+5. The bus scene has no voiceover or subtitle.
+6. The voice is understandable and the score does not mask it.
+7. Transitions do not obscure important faces, luggage, or story details.
+8. The ending has the intended hopeful hold and finishes cleanly.
 
 Automated stream and duration checks cannot judge artistic quality, exact
 visual-to-word synchronization, or whether the mix sounds right on the
@@ -270,7 +278,8 @@ Include the following in a report about this production:
    them, and any remaining issues.
 10. **Limitations:** still images with simulated camera movement rather than
     animated footage; automatic narration splitting based on pause detection;
-    no reviewed English subtitles; and any visual or timing compromises.
+    draft English subtitle translation pending fluent-speaker review; and any
+    visual or timing compromises.
 11. **Rights and credits:** identify the TimGM6mb SoundFont and its GPL-2
     licensing terms. Check the assignment's and institution's rules before
     distributing the rendered score or film publicly.
